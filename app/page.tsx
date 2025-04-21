@@ -40,7 +40,7 @@ export default function Home() {
 			<main className="w-full h-full flex items-center justify-center">
 				<div className="flex flex-col">
 					<div
-						className="text-center relative font-black text-[9vh] md:text-[10vh] lg:text-[12vh] xl:text-[14vh] 2xl:text-[16vh] leading-18 sm:leading-22 md:leading-26 lg:leading-30 xl:leading-36"
+						className="text-center relative font-black text-[8vh] md:text-[10vh] lg:text-[12vh] xl:text-[14vh] 2xl:text-[16vh] leading-18 sm:leading-22 md:leading-26 lg:leading-30 xl:leading-36"
 						onMouseEnter={mouseEnterHandler}
 						onMouseLeave={onMouseLeave}
 					>
@@ -49,7 +49,7 @@ export default function Home() {
 						))}
 					</div>
 					<div
-						className="text-center relative font-black text-[10vh] md:text-[12vh] lg:text-[14vh] xl:text-[16vh] 2xl:text-[18vh]"
+						className="text-center relative font-black text-[9vh] md:text-[12vh] lg:text-[14vh] xl:text-[16vh] 2xl:text-[18vh]"
 						onMouseEnter={mouseEnterHandler}
 						onMouseLeave={onMouseLeave}
 					>
@@ -62,8 +62,8 @@ export default function Home() {
 
 			<footer className="w-full cursor-none absolute font-semibold text-center bottom-8 left-0">
 				<div className="container mx-auto">
-					<span className="text-lg md:text-xl lg:text-2xl">
-						abduvoitov.com &#169; {new Date().getFullYear()}
+					<span className="font-semibold text-center">
+						Abduvoitov Asadbek &#169; {new Date().getFullYear()}
 					</span>
 				</div>
 			</footer>
