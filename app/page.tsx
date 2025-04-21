@@ -61,7 +61,7 @@ export default function Home() {
 			</main>
 
 			<footer className="w-full cursor-none absolute font-semibold text-center bottom-8 left-0">
-				<div className="container mx-auto">
+				<div className="container relative">
 					<span className="font-semibold text-center">
 						Abduvoitov Asadbek &#169; {new Date().getFullYear()}
 					</span>

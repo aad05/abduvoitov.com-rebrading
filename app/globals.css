@@ -121,6 +121,17 @@
 	}
 }
 
+* {
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Modern browsers */
+	user-select: none;
+}
+
 .container {
 	max-width: 800px;
 	width: 100%;
@@ -140,4 +151,69 @@
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.cursor {
+	background-color: #111;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	color: #000;
+	z-index: 2;
+}
+
+/* Text animation */
+.text-anim {
+	color: #2a2a27;
+	font-size: 28px;
+	cursor: none;
+	font-weight: 600;
+	position: relative;
+}
+
+@media (max-width: 1000px) {
+	.text-anim {
+		font-size: 22px;
+	}
+}
+@media (max-width: 500px) {
+	.text-anim {
+		font-size: 18px;
+	}
+}
+
+.text-anim:hover {
+	color: #fff;
+	transition: transform 0.5s ease;
+}
+.text-anim::before {
+	transform: scaleX(0);
+	transform-origin: bottom right;
+}
+
+.text-anim:hover::before {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.text-anim::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	z-index: -1;
+	transition: transform 0.5s ease;
+	padding: 10px;
+}
+
+span {
+	display: inline-block;
 }
