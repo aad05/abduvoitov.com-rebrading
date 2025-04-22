@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { FC } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +10,13 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
-import { sitemap } from "@/lib/mock-data";
+import useMockData from "@/lib/mock-data";
 import { useModals } from "@/zustand/modal";
 
-const SiteMap: FC = () => {
-	const { siteMap, setSiteMap } = useModals();
+const SiteMap = () => {
 	const pathname = usePathname();
+	const { sitemap } = useMockData();
+	const { siteMap, setSiteMap } = useModals();
 
 	return (
 		<Dialog open={siteMap} onOpenChange={(open) => setSiteMap(open)}>

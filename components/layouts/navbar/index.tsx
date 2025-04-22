@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Theme } from "@/components/constants";
 import { Button } from "@/components/ui/button";
 import type { ISitemap } from "@/interfaces/sitemap.interface";
-import { sitemap } from "@/lib/mock-data";
+import useMockData from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import { useModals } from "@/zustand/modal";
 import useNavbarFeatures from "./features";
@@ -19,6 +19,7 @@ interface PropsI {
 
 const Navbar: React.FC<PropsI> = ({ mode = "other" }) => {
 	const pathname = usePathname();
+	const { sitemap } = useMockData();
 	const { setSiteMap } = useModals();
 	const { onMouseLeave, onMouseEnter } = useNavbarFeatures();
 
@@ -26,8 +27,10 @@ const Navbar: React.FC<PropsI> = ({ mode = "other" }) => {
 		<>
 			<header
 				className={cn(
-					mode === "home" &&
-						"absolute text-xl md:text-2xl font-semibold top-0 left-1/2 -translate-x-1/2 w-[85%] md:w-[80%] m-auto flex items-center justify-between h-[120px]",
+					"m-auto",
+					mode === "home"
+						? "h-[120px] absolute text-xl md:text-2xl font-semibold top-0 left-1/2 z-[9999] -translate-x-1/2 flex items-center justify-between w-[85%] md:w-[80%]"
+						: "flex items-center justify-between container !py-4 md:h-[90px] lg:h-[100px]",
 				)}
 			>
 				<div
