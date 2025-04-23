@@ -21,9 +21,7 @@ export const mdxReader = () => {
 	return blogs;
 };
 
-export const getPost = (params: { slug: string }) => {
-	const { slug } = params;
-
+export const getPost = (slug: string) => {
 	const markdownFile = fs.readFileSync(
 		path.join("blogs", `${slug}.mdx`),
 		"utf-8",
