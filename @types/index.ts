@@ -3,17 +3,9 @@ export type DashboardMatricType = {
 	telegram: number;
 };
 
-export type Frontmatter = {
-	title: string;
-	description: string;
-	date: string;
-	tags?: string[];
-	author?: string;
-	image?: string;
-	[key: string]: unknown;
-};
-
 export type PostSlug = {
-	meta: Frontmatter;
+	meta: {
+		[key: string]: string;
+	};
 	slug: string;
 };
