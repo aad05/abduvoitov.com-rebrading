@@ -46,8 +46,8 @@ export async function generateMetadata({
 }
 
 // ✅ Make this function async if getPost is async
-export default async function Blog({ params }: BlogPageProps) {
-	const post = await getPost(params.slug); // ✅ await here too
+export default async function Blog({ params }: { params: { slug: string } }) {
+	const post = await getPost(params.slug);
 
 	return (
 		<main className="w-full h-[100vh]">
