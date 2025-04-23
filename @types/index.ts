@@ -14,8 +14,6 @@ export type Frontmatter = {
 };
 
 export type PostSlug = {
-	meta: {
-		[key: string]: Frontmatter;
-	};
+	meta: Frontmatter;
 	slug: string;
 };
