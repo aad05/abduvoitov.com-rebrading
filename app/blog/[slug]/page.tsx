@@ -5,6 +5,10 @@ import { getPost } from "@/lib/mdx-reader";
 import BlogRendering from "@/views/blog/blog-rendering";
 import type { Metadata } from "next";
 
+type BlogPageProps = {
+	params: { slug: string };
+};
+
 export async function generateStaticParams() {
 	const files = fs.readdirSync(path.join("blogs"));
 
@@ -17,9 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
 	params,
-}: {
-	params: { slug: string };
-}): Promise<Metadata> {
+}: BlogPageProps): Promise<Metadata> {
 	const post = getPost(params);
 
 	return {
