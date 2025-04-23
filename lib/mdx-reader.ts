@@ -21,11 +21,9 @@ export const mdxReader = () => {
 	return blogs;
 };
 
-export const getPost = (slug: string) => {
-	const markdownFile = fs.readFileSync(
-		path.join("blogs", `${slug}.mdx`),
-		"utf-8",
-	);
+export const getPost = async (slug: string) => {
+	const filePath = path.join("blogs", `${slug}.mdx`);
+	const markdownFile = await fs.promises.readFile(filePath, "utf8");
 
 	const { data: fontMatter, content } = matter(markdownFile);
 
