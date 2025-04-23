@@ -19,9 +19,7 @@ export async function generateStaticParams() {
 	return paths;
 }
 
-export async function generateMetadata({
-	params,
-}: BlogPageProps): Promise<Metadata> {
+export function generateMetadata({ params }: BlogPageProps): Metadata {
 	const post = getPost(params);
 
 	return {
