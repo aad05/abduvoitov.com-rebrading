@@ -1,25 +1,27 @@
 import fs from "node:fs";
 import path from "node:path";
-
 import { getPost } from "@/lib/mdx-reader";
 import BlogRendering from "@/views/blog/blog-rendering";
 import type { Metadata } from "next";
 
+// 👇 This type is correct and doesn't need Promise wrapper
 type BlogPageProps = {
 	params: { slug: string };
 };
 
-export async function generateStaticParams() {
+// ✅ Should not return Promise<BlogPageProps[]>, just plain array
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	const files = fs.readdirSync(path.join("blogs"));
 
-	const paths = files.map((filename) => ({
+	return files.map((filename) => ({
 		slug: filename.replace(".mdx", ""),
 	}));
-
-	return paths;
 }
 
-export function generateMetadata({ params }: BlogPageProps): Metadata {
+// ✅ Fix typing on generateMetadata
+export async function generateMetadata({
+	params,
+}: BlogPageProps): Promise<Metadata> {
 	const post = getPost(params);
 
 	return {
@@ -52,7 +54,8 @@ export function generateMetadata({ params }: BlogPageProps): Metadata {
 	};
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
+// ✅ Page component
+export default function Blog({ params }: BlogPageProps) {
 	const post = getPost(params);
 
 	return (
