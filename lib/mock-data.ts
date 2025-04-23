@@ -14,9 +14,9 @@ const useMockData = () => {
 		},
 		{
 			id: "2",
-			title: "Blogs",
-			path: "/blogs",
-			pathname: "/blogs",
+			title: "Blog",
+			path: "/blog",
+			pathname: "/blog",
 		},
 		{
 			id: "3",
