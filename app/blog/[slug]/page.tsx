@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import { getPost } from "@/lib/mdx-reader";
-import BlogRendering from "@/views/blog/blog-rendering";
 import type { Metadata } from "next";
 import type { FC } from "react";
 
-type BlogPageProps = {
+import { getPost } from "@/lib/mdx-reader";
+import BlogRendering from "@/views/blog/blog-rendering";
+
+type Props = {
 	params: { slug: string };
 };
 
@@ -17,10 +18,8 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	}));
 }
 
-export async function generateMetadata({
-	params,
-}: BlogPageProps): Promise<Metadata> {
-	const post = await getPost(params.slug); // ✅ await here if getPost is async
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const post = await getPost(params.slug);
 
 	return {
 		title: post.fontMatter.title,
@@ -46,7 +45,7 @@ export async function generateMetadata({
 	};
 }
 
-const Blog: FC<BlogPageProps> = async ({ params }) => {
+const Blog: FC<Props> = async ({ params }) => {
 	const post = await getPost(params.slug);
 
 	return (
