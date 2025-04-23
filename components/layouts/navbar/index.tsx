@@ -30,11 +30,14 @@ const Navbar: React.FC<PropsI> = ({ mode = "other" }) => {
 					"m-auto",
 					mode === "home"
 						? "h-[120px] absolute text-xl md:text-2xl font-semibold top-0 left-1/2 z-[9999] -translate-x-1/2 flex items-center justify-between w-[85%] md:w-[80%]"
-						: "flex items-center justify-between container !py-4 md:h-[90px] lg:h-[100px]",
+						: "flex items-center justify-between w-[700px] m-auto p-5 max-[800px]:w-full max-[800px]:py-5 max-[800px]:px-10 !py-4 md:h-[90px] lg:h-[100px]",
 				)}
 			>
 				<div
-					className="text-anim"
+					className={cn(
+						mode !== "home" && "hidden",
+						"text-anim text-[#2a2a27] dark:text-white",
+					)}
 					data-value="Abduvoitov."
 					onMouseLeave={onMouseLeave}
 					onMouseEnter={onMouseEnter}
@@ -42,7 +45,12 @@ const Navbar: React.FC<PropsI> = ({ mode = "other" }) => {
 					Abduvoitov.
 				</div>
 
-				<nav className="flex items-center gap-2 sm:gap-4 lg:gap-10">
+				<nav
+					className={cn(
+						mode !== "home" && "justify-between w-full",
+						"flex items-center gap-2 sm:gap-4 lg:gap-10",
+					)}
+				>
 					<ul className="hidden lg:flex items-center gap-10">
 						{sitemap.map(
 							({ id, title, path }: ISitemap) =>
@@ -50,14 +58,14 @@ const Navbar: React.FC<PropsI> = ({ mode = "other" }) => {
 									<li key={id} className="group">
 										<Link
 											href={path}
-											className={`text-lg relative pb-1 hover:text-[blue] ${
+											className={`text-lg relative pb-1 hover:dark:text-white hover:text-black ${
 												pathname === path
-													? "font-bold text-[blue]"
+													? "font-bold dark:text-white text-black"
 													: "font-semibold"
 											}`}
 										>
 											{title}
-											<span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[blue] transition-all duration-300 group-hover:w-full" />
+											<span className="absolute bottom-0 left-0 w-0 h-[2px] dark:bg-white bg-black transition-all duration-300 group-hover:w-full" />
 										</Link>
 									</li>
 								),

@@ -1,12 +1,5 @@
+import ResumePageView from "@/views/resume";
 import type { Metadata } from "next";
-
-import { EducationCard, WorkExperienceCard } from "@/components/generics";
-import { Section } from "@/components/layouts";
-import type {
-	IEducation,
-	IWorkExperience,
-} from "@/interfaces/experience.interface";
-import useMockData from "@/lib/mock-data";
 
 export const metadata: Metadata = {
 	title: "Resume",
@@ -39,26 +32,12 @@ export const metadata: Metadata = {
 	},
 };
 
-const Resume = () => {
-	const { work_experience, education } = useMockData();
-
+export default function Resume() {
 	return (
-		<Section id="resume" title="Resume">
-			<h3 className="text-2xl md:text-3xl font-bold mt-4 sm:mt-6 md:mt-8 mb-2">
-				Work Experience
-			</h3>
-			{work_experience.map((item: IWorkExperience) => (
-				<WorkExperienceCard key={item.id} {...item} />
-			))}
-
-			<h3 className="text-2xl md:text-3xl font-bold mt-4 sm:mt-6 md:mt-8 mb-2">
-				Education
-			</h3>
-			{education.map((item: IEducation) => (
-				<EducationCard key={item.id} {...item} />
-			))}
-		</Section>
+		<>
+			<main className="w-full h-[100vh]">
+				<ResumePageView />
+			</main>
+		</>
 	);
-};
-
-export default Resume;
+}
