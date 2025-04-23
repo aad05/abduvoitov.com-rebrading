@@ -3,6 +3,7 @@ import path from "node:path";
 import { getPost } from "@/lib/mdx-reader";
 import BlogRendering from "@/views/blog/blog-rendering";
 import type { Metadata } from "next";
+import type { FC } from "react";
 
 type BlogPageProps = {
 	params: { slug: string };
@@ -45,8 +46,7 @@ export async function generateMetadata({
 	};
 }
 
-// ✅ Make this function async if getPost is async
-export default async function Blog({ params }: { params: { slug: string } }) {
+const Blog: FC<BlogPageProps> = async ({ params }) => {
 	const post = await getPost(params.slug);
 
 	return (
@@ -54,4 +54,6 @@ export default async function Blog({ params }: { params: { slug: string } }) {
 			<BlogRendering post={post} />
 		</main>
 	);
-}
+};
+
+export default Blog;
