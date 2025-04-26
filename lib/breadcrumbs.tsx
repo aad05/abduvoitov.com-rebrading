@@ -3,7 +3,10 @@
 import { useParams } from "next/navigation";
 
 const useBreadcrumbs = () => {
-	const { slug } = useParams<{ slug: string }>();
+	const { slug, visited_place_slug } = useParams<{
+		slug: string;
+		visited_place_slug: string;
+	}>();
 
 	const travelBreadcrumbs = [
 		{ id: "1", title: "Home", path: "/" },
@@ -20,7 +23,28 @@ const useBreadcrumbs = () => {
 		},
 	];
 
-	return { travelBreadcrumbs, placeToVisitBreadcrumbs };
+	const visitedPlaceToVisitBreadcrumbs = [
+		{ id: "1", title: "Home", path: "/" },
+		{ id: "2", title: "Travel", path: "/travel" },
+		{
+			id: "3",
+			title: slug ? decodeURIComponent(slug) : "Place",
+			path: `/travel${slug ? decodeURIComponent(slug) : ""}`,
+		},
+		{
+			id: "4",
+			title: visited_place_slug
+				? decodeURIComponent(visited_place_slug)
+				: "Visited Place",
+			isActive: true,
+		},
+	];
+
+	return {
+		travelBreadcrumbs,
+		placeToVisitBreadcrumbs,
+		visitedPlaceToVisitBreadcrumbs,
+	};
 };
 
 export default useBreadcrumbs;
