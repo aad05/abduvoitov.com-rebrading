@@ -1,8 +1,8 @@
 // import { storage } from "@/configs/firebase-admin";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 // import { v4 as uuidv4 } from "uuid";
 
-export async function POST(req: NextRequest) {
+export async function POST() {
 	return NextResponse.json({ url: "hello" });
 
 	// Check if the content type is multipart/form-data
