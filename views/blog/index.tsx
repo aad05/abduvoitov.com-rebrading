@@ -4,9 +4,9 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import type { FC } from "react";
 
-import type { PostSlug } from "@/@types";
 import { Navbar } from "@/components/layouts";
 import { Input } from "@/components/ui/input";
+import type { PostSlug } from "@/types";
 
 const BlogPageView: FC<{ data: PostSlug[] }> = ({ data }) => {
 	const onSearch = async (search: string) => {

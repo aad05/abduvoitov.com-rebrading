@@ -1,5 +1,5 @@
-import type { PostSlug } from "@/@types";
 import { mdxReader } from "@/lib/mdx-reader";
+import type { PostSlug } from "@/types";
 import BlogPageView from "@/views/blog";
 import type { Metadata } from "next";
 
