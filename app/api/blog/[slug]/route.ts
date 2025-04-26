@@ -4,9 +4,9 @@ import type { NextRequest } from "next/server";
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: { slug: string } },
+	{ params }: { params: Promise<{ slug: string }> },
 ) {
-	const { slug } = params;
+	const { slug } = await params;
 
 	// Get search params from URL
 	const { searchParams } = new URL(req.url);
