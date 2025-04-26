@@ -35,7 +35,7 @@ const GenericBreadcrumb: React.FC<GenericBreadcrumbProps> = ({ links }) => {
 											{item.title}
 										</BreadcrumbPage>
 									) : (
-										<BreadcrumbLink href={item.path}>
+										<BreadcrumbLink href={item.path} className="capitalize">
 											{item.title}
 										</BreadcrumbLink>
 									)}

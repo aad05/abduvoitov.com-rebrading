@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 		);
 	}
 
-	let parent_id = null;
+	let parent_id: string | null = null;
 
 	if (parent_slug) {
 		const { data: parentBlog } = await supabase
