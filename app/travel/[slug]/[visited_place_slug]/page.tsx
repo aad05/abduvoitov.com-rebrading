@@ -2,15 +2,15 @@ import VisitedPlacePageView from "@/views/travel/qatar/visited-place";
 import type { Metadata } from "next";
 
 type Props = {
-	params: {
+	params: Promise<{
 		slug: string;
 		visited_place_slug: string;
-	};
+	}>;
 };
 
 // Dynamic metadata generator
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const { slug, visited_place_slug } = params; // No need to await here
+	const { slug, visited_place_slug } = await params; // No need to await here
 
 	const placeName = visited_place_slug
 		.replace(/-/g, " ") // Replace dashes with spaces
