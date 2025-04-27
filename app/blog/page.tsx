@@ -1,7 +1,8 @@
-import { mdxReader } from "@/lib/mdx-reader";
-import type { PostSlug } from "@/types";
-import BlogPageView from "@/views/blog";
+
 import type { Metadata } from "next";
+import BlogPageView from "@/views/blog";
+import { getBlogs } from "@/services/blog.service";
+import { IBlog } from "@/interfaces/blog.interface";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -36,8 +37,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export default function Blog() {
-	const data: PostSlug[] = mdxReader();
+export default async function Blog() {
+	const data: IBlog[] = await getBlogs()
 
 	return (
 		<main className="w-full h-[100vh]">
