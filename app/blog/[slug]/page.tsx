@@ -1,13 +1,23 @@
 import { notFound } from "next/navigation";
 import { getBlog } from "@/services/blog.service";
 import SingleBlogPageView from "@/views/blog/single-blog";
+import { Metadata } from "next";
 
-interface Props {
-  params: { slug: string };
-}
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export async function generateMetadata({ params }: Props) {
-  const blog = await getBlog(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  if (!slug) {
+    return {
+      title: "Blog not found",
+    };
+  }
+
+  const blog = await getBlog(slug);
 
   if (!blog) {
     return {
@@ -19,12 +29,12 @@ export async function generateMetadata({ params }: Props) {
     title: blog.title,
     description: blog.content.slice(0, 150),
     alternates: {
-      canonical: `/blog/${params?.slug}`,
+      canonical: `/blog/${blog.slug}`,
     },
     openGraph: {
       title: blog.title,
       description: blog.content.slice(0, 150),
-      url: `https://abduvoitov.com/blog/${params?.slug}`,
+      url: `https://abduvoitov.com/blog/${blog.slug}`,
       siteName: "Abduvoitov",
       images: [
         {
@@ -40,7 +50,13 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function SingleBlog({ params }: Props) {
-  const blog = await getBlog(params.slug);
+  const { slug } = await params;
+
+  if (!slug) {
+    notFound();
+  }
+
+  const blog = await getBlog(slug);
 
   if (!blog) {
     notFound();
