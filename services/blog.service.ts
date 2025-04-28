@@ -13,3 +13,17 @@ export async function getBlogs() {
 
   return data as IBlog[];
 }
+
+export async function getBlog(slug: string) {
+  const { data, error } = await supabase
+    .from('blogs')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+    if(error) {
+      throw new Error(error.message);
+    }
+
+    return data as IBlog
+}

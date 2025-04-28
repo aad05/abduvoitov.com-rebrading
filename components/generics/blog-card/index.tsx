@@ -16,7 +16,7 @@ const BlogCard: React.FC<IBlog> = ({
 }) => {
   return (
     <Link href={`/blog/${slug}`}>
-      <Card className="hover:scale-[0.97] transition-transform duration-200 ease-in-out  shadow-md border  dark:hover:bg-[#f9f9f92a] hover:bg-[#0000001d]  hover:shadow-lg">
+      <Card className="shadow-md border dark:hover:bg-[#f9f9f92a] hover:bg-[#0000001d] hover:shadow-lg">
         <CardContent className="cursor-pointer rounded-md transition-colors">
           <div className="flex flex-col md:flex-row justify-between gap-4">
             <div>
